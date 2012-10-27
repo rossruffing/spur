@@ -43,10 +43,61 @@ if (parent==null && parent=="")
 }
 
 
-function createBadge(amount)
+// Only run this when Facebook is ready
+window.fbAsyncInit = function() {
+    // init the FB JS SDK
+    FB.init({
+      appId      : '379998022075309', // App ID from the App Dashboard
+      //channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File for x-domain communication
+      status     : true, // check the login status upon init?
+      cookie     : true, // set sessions cookies to allow your server to access the session?
+      xfbml      : true  // parse XFBML tags on this page?
+    });
+
+    // Additional initialization code such as adding Event Listeners goes here
+    createBadge();
+    
+
+  };
+
+
+(function(d){
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     ref.parentNode.insertBefore(js, ref);
+   }(document));
+
+function postToFeed()
+{
+	FB.init({appId: "379998022075309", status: true, cookie: true});
+
+	var obj = {
+		method: 'feed',
+		link: 'https://developers.facebook.com/docs/reference/dialogs/',
+		picture: 'http://placekitten.com/80/80',
+		name: 'Facebook Dialogs',
+		caption: 'Reference Documentation',
+		description: 'Using Dialogs to interact with users.'
+	};
+
+	function callback(response) {
+		document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
+	}
+
+	FB.ui(obj, callback);
+	return false;
+}
+
+function createBadge()
 {
 	div = document.getElementById("donorbadge");
 	donation = parseFloat(div.dataset.donation);
-	div.innerHTML = "<img src='http://placekitten.com/80/80'/><br/><a href='facebook.com'><img src='http://anitaborg.org/files/facebook_button_eu3g.gif' width='32'/> click to share!</a>";
+	div.innerHTML = "<img src='http://placekitten.com/80/80'/><br/>";
+	fblink = document.createElement('a');
+	fblink.innerHTML = "<img src='http://anitaborg.org/files/facebook_button_eu3g.gif' width='32'/> share on facebook!";
+	fblink.onclick = postToFeed;
+	div.appendChild(fblink);
 }
 window.onload = createBadge;
