@@ -4,6 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Donate to Unichef</title>
 	<link rel="stylesheet" href="style.css">
+	<script src="donorbadge.js"></script>	
 </head>
 <body>
 	<div class="donate-body">

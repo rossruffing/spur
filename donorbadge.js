@@ -35,7 +35,8 @@ function getParameterByName(name)
 // This runs every time this file is loaded!
 // Checks the link for a donatorbadge_parent and moves it into a cookie.
 var parent = getCookie("donatorbadge_parent");
-if (parent==null && parent=="")
+console.log("parent is: "+parent)
+if (parent==null || parent=="" || parent===undefined)
 {
 	console.log("DonatorBadge: no existing cookie.");
 	parent = getParameterByName("donatorbadge_parent");
@@ -79,7 +80,7 @@ function feedonly()
 
 function createLink(id)
 {
-	console.log("Got the id opf parent: " + id);
+	console.log("Got the id of parent: " + id);
 	div = document.getElementById("donorbadge");
 	donate_url = div.dataset.donate_url;
 	fb_title = div.dataset.donate_url || "";
@@ -101,15 +102,17 @@ function createLink(id)
 function createBadge()
 {
 	div = document.getElementById("donorbadge");
-	
+	if(div == null) return;
 	parent_id = getCookie("donatorbadge_parent");
 	donation = parseFloat(div.dataset.donation);
 	
+	console.log("Trying JSONP");
 	var script = document.createElement('script');
-	script.src = '//proto.okcollaborative.org/badgelinkmaker.php'+
-		'?amt='+donation+
+	script.src = '//proto.okcollaborative.org/badge_link_maker.php'+
+		'?amount='+donation+
 		'&charity_id=77'+
 		'&parent_id='+parent_id;
+	console.log(script.src);
 	document.getElementsByTagName('head')[0].appendChild(script);
 
 	createLink("http://proto.okcollaborative.org")
