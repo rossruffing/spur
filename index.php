@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<form method="post"
+					action="https://secure.unicefusa.org/site/Donation2"
+					id="ProcessForm"
+					name="process">
+
+			<input type="submit"
+						 value="Process"
+						 name="pstep_finish"
+						 id="pstep_finish" class="FinishButton">
+		</form>
+
+		<?php
+		// put your code here
+		?>
+	</body>
+</html>
