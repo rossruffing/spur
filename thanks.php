@@ -7,12 +7,11 @@ and open the template in the editor.
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title></title>
+		<script src="donorbadge.js"></script>
+
 	</head>
 	<body>
-		<?php
-		// put your code here
-		?>
 
-		<a href="facebook.com">Send me to Facebook</a>
+		<div id="donorbadge" data-donation="10.00">Thanks for your donation!</div>
 	</body>
 </html>
