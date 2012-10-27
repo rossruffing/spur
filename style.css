@@ -1,0 +1,78 @@
+	body {
+		background: #EDF1F5;
+		background-image: url('/bg.png');
+		background-position: left-top;
+		background-repeat: repeat-x;
+		color: #3F474F;
+		font: .8em "Arial", sans-serif;
+		margin: auto;
+	}
+
+	a, a:link, a:visited {
+		text-decoration: none;
+		color: #8195B5;
+	}
+
+	a:hover {
+		color: #4B6896;
+	}
+
+	.donate-body {
+		margin: 50px auto;
+		width: 800px;
+	}
+
+	.center-container {
+		text-align: center;
+	}
+
+	input.donate-button {
+		background: #fff;
+		border: 1px solid #8195B5;
+		font: 2.0em bold "Arial", sans-serif;
+		color: #8195B5;
+		padding: 15px;
+		margin: auto;
+		font-weight: bold;
+	}
+
+	input.donate-button:hover {
+		background: #D8E0ED;
+		border: 1px solid #8195B5;
+		color: #8195B5;
+		cursor: pointer;
+	}
+
+	#logo {
+		font: 3.0em bold "Arial", sans-serif;
+	}
+
+	nav {
+		float: right;
+	}
+
+	nav ul {
+		float: right;
+		list-style: none;
+		display: block;
+	}
+
+	nav li {
+		float: left;
+		margin-right: 5px;
+	}
+
+	nav ul a, a:active, a:visited {
+		display: block;
+		background: #fff;
+		border: 1px solid #8195B5;
+		font: 1.1em "Arial", sans-serif;
+		font-weight: bold;
+		color: #8195B5;
+		padding: 10px;
+		text-decoration: none;
+	}
+
+	nav ul a:hover {
+		background: #D8E0ED;
+	}
