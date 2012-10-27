@@ -11,8 +11,8 @@
 					name="process">
 
 			<input type="submit"
-						 value="Process"
-						 name="pstep_finish"
+						 value="Donate to Charity"
+						 name="donate"
 						 id="pstep_finish" class="FinishButton">
 		</form>
 
