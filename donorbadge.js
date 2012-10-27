@@ -72,19 +72,22 @@ function createBadge()
 	donator = "Michael";
 	donation = parseFloat(div.dataset.donation);
 	donate_url = div.dataset.donate_url;
+	fb_title = div.dataset.donate_url || "";
+	fb_caption = div.dataset.fb_caption || "Click to add your own donation!";
+	fb_description = div.dataset.fb_description || "Thanks!";
 
 	div.innerHTML = "<img src='http://placekitten.com/80/80'/><br/>";
 	fblink = document.createElement('a');
 	fblink.innerHTML = "<img src='http://anitaborg.org/files/facebook_button_eu3g.gif' width='32'/> share on facebook!";
-
+	
 	fblink.onclick = function(){
 		var obj = {
 			method: 'feed',
 			link: donate_url+"?donatorbadge_parent="+donator,
-			picture: 'http://placekitten.com/80/80',
-			name: "name",
-			caption: "caption",
-			description: "description"
+			picture: 'http://placekitten.com/200/200',
+			name: fb_title,
+			caption: fb_caption,
+			description: fb_description
 		};
 		FB.ui(obj);
 		return false;

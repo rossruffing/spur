@@ -6,7 +6,7 @@
 	</head>
 	<body>
 		<form method="post"
-					action="https://secure.unicefusa.org/site/Donation2"
+					action="thanks.php"
 					id="ProcessForm"
 					name="process">
 
