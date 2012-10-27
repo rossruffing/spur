@@ -42,3 +42,11 @@ if (parent==null && parent=="")
 	setCookie("donatorbadge_parent",parent);
 }
 
+
+function createBadge(amount)
+{
+	div = document.getElementById("donorbadge");
+	donation = parseFloat(div.dataset.donation);
+	div.innerHTML = "<img src='https://dl.dropbox.com/u/969454/img/1246086768525.gif'/><br/>DONATED $"+donation+" CLICK ON THIS. GO TO FACEBOOK.";
+}
+window.onload = createBadge;
