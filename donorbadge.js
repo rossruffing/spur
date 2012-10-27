@@ -47,6 +47,6 @@ function createBadge(amount)
 {
 	div = document.getElementById("donorbadge");
 	donation = parseFloat(div.dataset.donation);
-	div.innerHTML = "<img src='https://dl.dropbox.com/u/969454/img/leftwrist.jpg' width='120px'/><br/><a href='facebook.com'><img src='http://anitaborg.org/files/facebook_button_eu3g.gif' width='32'/> click to share!</a>";
+	div.innerHTML = "<img src='http://placekitten.com/80/80'/><br/><a href='facebook.com'><img src='http://anitaborg.org/files/facebook_button_eu3g.gif' width='32'/> click to share!</a>";
 }
 window.onload = createBadge;
