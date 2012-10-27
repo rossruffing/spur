@@ -42,9 +42,27 @@ if (parent==null && parent=="")
 	setCookie("donatorbadge_parent",parent);
 }
 
+function fblogin() {
+	console.log("fblogin");
+    FB.login(function(response) {
+        if (response.authResponse) {
+            // connected
+        } else {
+            // cancelled
+        }
+    });
+}
+
+function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+        console.log('Good to see you, ' + response.name + '.');
+    });
+}
 
 // Only run this when Facebook is ready
 window.fbAsyncInit = function() {
+	console.log("Facebook API is loaded");
     FB.init({
       appId      : '379998022075309', // App ID from the App Dashboard
       //channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File for x-domain communication
@@ -53,9 +71,22 @@ window.fbAsyncInit = function() {
       xfbml      : true  // parse XFBML tags on this page?
     });
 
+    FB.getLoginStatus(function(response) {
+	  if (response.status === 'connected') {
+	    // connected
+	    testAPI();
+	  } else if (response.status === 'not_authorized') {
+	    // not_authorized
+	    console.log("Not authorized");
+	    fblogin();
+	  } else {
+	    // not_logged_in
+	    fblogin();
+	  }
+ 	});
+
     createBadge();
   };
-
 
 (function(d){
      var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
@@ -77,9 +108,11 @@ function createBadge()
 	fb_description = div.dataset.fb_description || "Thanks!";
 
 	div.innerHTML = "<img src='http://placekitten.com/80/80'/><br/>";
+
 	fblink = document.createElement('a');
 	fblink.innerHTML = "<img src='http://anitaborg.org/files/facebook_button_eu3g.gif' width='32'/> share on facebook!";
-	
+	div.appendChild(fblink);
+
 	fblink.onclick = function(){
 		var obj = {
 			method: 'feed',
@@ -92,6 +125,6 @@ function createBadge()
 		FB.ui(obj);
 		return false;
 	};
-	div.appendChild(fblink);
+	
 }
 window.onload = createBadge;
