@@ -41,25 +41,6 @@ if (parent==null && parent=="")
 	parent = getParameterByName("donatorbadge_parent");
 	setCookie("donatorbadge_parent",parent);
 }
-
-function fblogin() {
-	console.log("fblogin");
-    FB.login(function(response) {
-        if (response.authResponse) {
-            // connected
-        } else {
-            // cancelled
-        }
-    });
-}
-
-function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-        console.log('Good to see you, ' + response.name + '.');
-    });
-}
-
 // Only run this when Facebook is ready
 window.fbAsyncInit = function() {
 	console.log("Facebook API is loaded");
@@ -71,22 +52,8 @@ window.fbAsyncInit = function() {
       xfbml      : true  // parse XFBML tags on this page?
     });
 
-    FB.getLoginStatus(function(response) {
-	  if (response.status === 'connected') {
-	    // connected
-	    testAPI();
-	  } else if (response.status === 'not_authorized') {
-	    // not_authorized
-	    console.log("Not authorized");
-	    fblogin();
-	  } else {
-	    // not_logged_in
-	    fblogin();
-	  }
- 	});
-
     createBadge();
-  };
+};
 
 (function(d){
      var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
@@ -96,35 +63,55 @@ window.fbAsyncInit = function() {
      ref.parentNode.insertBefore(js, ref);
    }(document));
 
-function createBadge()
+function feedonly()
 {
+	parent_id = getCookie("donatorbadge_parent");
+	var obj = {
+		method: 'feed',
+		link: donate_url+"?donatorbadge_parent="+parent_id,
+		picture: 'http://proto.okcollaborative.org/badgesmall.jpg',
+		name: fb_title,
+		caption: fb_caption,
+		description: fb_description
+	};
+	FB.ui(obj);
+};
+
+function createLink(id)
+{
+	console.log("Got the id opf parent: " + id);
 	div = document.getElementById("donorbadge");
-	
-	donator = "Michael";
-	donation = parseFloat(div.dataset.donation);
 	donate_url = div.dataset.donate_url;
 	fb_title = div.dataset.donate_url || "";
 	fb_caption = div.dataset.fb_caption || "Click to add your own donation!";
 	fb_description = div.dataset.fb_description || "Thanks!";
-
-	div.innerHTML = "<img src='http://placekitten.com/80/80'/><br/>";
+	
+	div.innerHTML = "<img src='http://proto.okcollaborative.org/badgesmall.jpg'/><br/>";
 
 	fblink = document.createElement('a');
+	fblink.href = "#";
 	fblink.innerHTML = "<img src='http://anitaborg.org/files/facebook_button_eu3g.gif' width='32'/> share on facebook!";
-	div.appendChild(fblink);
-
 	fblink.onclick = function(){
-		var obj = {
-			method: 'feed',
-			link: donate_url+"?donatorbadge_parent="+donator,
-			picture: 'http://placekitten.com/200/200',
-			name: fb_title,
-			caption: fb_caption,
-			description: fb_description
-		};
-		FB.ui(obj);
+		feedonly();
 		return false;
 	};
+	div.appendChild(fblink);
+};
+
+function createBadge()
+{
+	div = document.getElementById("donorbadge");
 	
-}
+	parent_id = getCookie("donatorbadge_parent");
+	donation = parseFloat(div.dataset.donation);
+	
+	var script = document.createElement('script');
+	script.src = '//proto.okcollaborative.org/badgelinkmaker.php'+
+		'?amt='+donation+
+		'&charity_id=77'+
+		'&parent_id='+parent_id;
+	document.getElementsByTagName('head')[0].appendChild(script);
+
+	createLink("http://proto.okcollaborative.org")
+};
 window.onload = createBadge;
