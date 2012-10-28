@@ -85,7 +85,7 @@ function createBadge()
 	fb_caption = div.dataset.fb_caption || "Click to add your own donation!";
 	fb_description = div.dataset.fb_description || "Thanks!";
 	
-	div.innerHTML = "<img src='http://proto.okcollaborative.org/badgesmall.jpg'/><br/>";
+	div.innerHTML = "<img src='http://proto.okcollaborative.org/badge.png'/><br/>";
 
 	fblink = document.createElement('a');
 	fblink.href = "#";
@@ -136,12 +136,17 @@ function createLink(id)
 	var obj = {
 		method: 'feed',
 		link: donate_url+"?donatorbadge_parent="+id,
-		picture: 'http://proto.okcollaborative.org/badgesmall.jpg',
+		picture: 'http://proto.okcollaborative.org/badge.png',
 		name: fb_title,
 		caption: fb_caption,
-		description: fb_description
+		description: fb_description,
+		redirect_uri: 'http://proto.okcollaborative.org/'
 	};
+
+	function callback(response) {
+		top.location.href='http://proto.okcollaborative.org/';
+	}
 	console.log(donate_url+"?donatorbadge_parent="+id);
-	FB.ui(obj);
+	FB.ui(obj, callback);
 };
 
