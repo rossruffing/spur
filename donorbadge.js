@@ -34,14 +34,12 @@ function getParameterByName(name)
 
 // This runs every time this file is loaded!
 // Checks the link for a donatorbadge_parent and moves it into a cookie.
-var parent = getCookie("donatorbadge_parent");
-console.log("parent is: "+parent)
-if (parent==null || parent=="" || parent===undefined)
-{
-	console.log("DonatorBadge: no existing cookie.");
-	parent = getParameterByName("donatorbadge_parent");
+
+var parent = getParameterByName("donatorbadge_parent");
+if(parent!=null || parent!="" || parent)
 	setCookie("donatorbadge_parent",parent);
-}
+parent = getCookie("donatorbadge_parent");
+
 
 // Check if logged in
 // Login

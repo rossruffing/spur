@@ -23,7 +23,7 @@
 		<img src="/kittenbnr.png">
 
 		<form method="post"
-		action="thanks.php"
+		action="donate.php"
 		id="ProcessForm"
 		name="process">
 
