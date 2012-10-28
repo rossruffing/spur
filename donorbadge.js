@@ -139,14 +139,10 @@ function createLink(id)
 		picture: 'http://proto.okcollaborative.org/badge.png',
 		name: fb_title,
 		caption: fb_caption,
-		description: fb_description,
-		redirect_uri: 'http://proto.okcollaborative.org/'
+		description: fb_description
 	};
 
-	function callback(response) {
-		top.location.href='http://proto.okcollaborative.org/';
-	}
 	console.log(donate_url+"?donatorbadge_parent="+id);
-	FB.ui(obj, callback);
+	FB.ui(obj, function(){window.location.href = 'http://proto.okcollaborative.org/';});
 };
 
