@@ -36,10 +36,11 @@ function getParameterByName(name)
 // Checks the link for a donatorbadge_parent and moves it into a cookie.
 
 var parent = getParameterByName("donatorbadge_parent");
-if(parent!=null || parent!="" || parent)
+if(parent!=null && parent!="" && parent!==undefined)
+{
 	setCookie("donatorbadge_parent",parent);
+}
 parent = getCookie("donatorbadge_parent");
-
 
 // Check if logged in
 // Login
